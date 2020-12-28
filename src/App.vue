@@ -1,32 +1,66 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header class="header" ></header>
+    <el-container class="container">
+      <menu class="menuLeft"></menu>
+      <div class="main">
+        <el-breadcrumb separator-class="el-icon-arrow-right">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+          <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+          <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+        </el-breadcrumb>
+        <router-view />
+      </div>
+    </el-container>
   </div>
 </template>
 
+<script>
+  export default {
+
+  }
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  html, body, #app {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  }
+  div {
+    padding: 0;
+    margin: 0;
+  }
+  #app {
+    display: flex;
+    flex-direction: column;
+    .header {
+      height: 100px;
+      background-color: #42b983;
+    }
+    .container {
+      flex: 1;
     }
   }
-}
+
+
+  #app .container{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    .menuLeft {
+      padding: 0;
+      margin: 0;
+      background-color: #f66;
+      width: 300px;
+      height: 100%;
+    }
+    .main {
+      padding: 20px;
+    }
+  }
+
 </style>
