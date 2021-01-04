@@ -59,6 +59,7 @@
       height: 100%;
     }
     .main {
+      width: 100%;
       padding: 20px;
     }
   }

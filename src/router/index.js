@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import table from '../views/table.vue'
+import table from '../views/margeTable.vue'
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/table',
+    path: '/',
     name: 'Home',
     component: Home
   },{
-    path: '/',
+    path: '/table',
     name: 'table',
     component: table
   },

@@ -14,6 +14,8 @@
 <!--</ComTable>-->
 调用时参数说明:
     type: 表格类型.  非必传.  值: selection(多选)  /  checkbox(单选)   类型: string /index:序号1.2.3...
+    ishandle: 是否展示操作栏    非必传    默认为true    true/false
+    isMove: 是否可以上下移动    非必传    默认为false    true/false
     handleWidth: 操作栏宽度    非必传   默认200
     tableTitle: 表头.  必传.   类型: 数组   例:
         tableTitle: [{
@@ -86,6 +88,16 @@
       <el-table-column label="操作" v-if="ishandle" :width="handleWidth">
         <template slot-scope="scope">
           <slot name="handle" :row="scope.row" :index="scope.$index"></slot>
+          <span style="margin-left: 10px" v-if="isMove"  class="customRow">
+            <a
+              class="el-icon-top"
+              @click.stop="handleMove(scope.row, scope.$index, 'up')">
+            </a>
+            <a
+              class="el-icon-bottom"
+              @click.stop="handleMove(scope.row, scope.$index, 'down')">
+            </a>
+          </span>
         </template>
       </el-table-column>
     </el-table>
@@ -112,10 +124,15 @@ export default {
     handleWidth: { // 操作宽度
       default: 200
     },
+    isMove: {// 是否支持移动
+      type: Boolean,
+      default: false
+    },
     ishandle: { // 是否有操作按钮
       type: Boolean,
       default: true
     },
+    queryInfo: Object, // 其他参数
     type: String, // 单选/多选/或值展示
     tableTitle: Array, // 表头
     tableData: Array, // 数据
@@ -131,7 +148,6 @@ export default {
     handleSizeChange (size) { // 改变每页数量
       this.pageSize = size
       this.$emit('handleChange', this.pageSize, this.current)
-
     },
     handleChecked (row) { // 单选
       if (row.isChecked) {
@@ -155,9 +171,44 @@ export default {
     change (row, index) { // 切换开关
       this.$emit('handleSwitch', row, index)
     },
+    // 上下移动
+    handleMove(row, idx, dropType) {
+      let upid
+      if (dropType == 'up') {
+        if(idx == 0){
+          this.$message({
+            message: '处于顶端，不能继续上移',
+            type: 'warning'
+          });
+          return
+        }
+        upid = idx-1;
+      } else {
+        if(idx == this.tableData.length - 1){
+          this.$message({
+            message: '处于底端，不能继续下移',
+            type: 'warning'
+          });
+          return
+        }
+        upid = idx + 1;
+      }
+      let param = {};
+      param.id1 = row.id;//当前节点id
+      param.id2 =this.tableData[upid].id;//上/下一个节点id
+      this.$emit('handleMove', param)
+    },
   }
 }
 </script>
 
 <style scoped lang="scss">
+  .customRow {
+    a {
+      color: #6C57FF;
+    }
+    a:hover {
+      color: #DF396C
+    }
+  }
 </style>
