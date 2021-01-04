@@ -3,6 +3,7 @@
   <div id="app">
     <div>
       <Button @click="type='simple'">简单版本</Button>
+      <!--  -->
       <Button @click="type='encapsulation'">封装版本</Button>
     </div>
     <div class="view-wrap">
