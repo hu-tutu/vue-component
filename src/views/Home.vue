@@ -51,6 +51,8 @@ import ComTree from '@/components/Com_Tree.vue'
 import simple from '../components/simple'
 import encapsulation from '../components/encapsulation'
 
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'Home',
   components: {
@@ -167,9 +169,14 @@ export default {
       },],
     }
   },
+  computed: {
+    ...mapState(['findSubject'])
+  },
   mounted() {
+    this.getDetails('0000')
   },
   methods: {
+    ...mapActions(['getDetails']),
     deleteTree (row) {
       console.log(row)
     },
