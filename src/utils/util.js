@@ -37,7 +37,7 @@ export function handleTableSpan(mergeKeys, tableData) {
     })
     return spanObj
   }
-};
+}
 
 /**
  *
@@ -49,6 +49,7 @@ export function handleTableSpan(mergeKeys, tableData) {
 export function handleObjectSpanMethod (tableObj, mergeKeys, rowspanObj, notEmpty) {
   if (mergeKeys instanceof Array && rowspanObj instanceof Object) {
     const { row, column, rowIndex, columnIndex } = tableObj
+    console.log(columnIndex)
     for (let i = 0 ; i < mergeKeys.length; i++) {
       let term
       if (notEmpty) {
@@ -58,7 +59,7 @@ export function handleObjectSpanMethod (tableObj, mergeKeys, rowspanObj, notEmpt
       }
       if (term) {
         const _row = rowspanObj[mergeKeys[i]][rowIndex]
-        const _col = _row > 0 ? 1 : 0;
+        const _col = _row > 0 ? 1 : 0
         return {
           rowspan: _row,
           colspan: _col

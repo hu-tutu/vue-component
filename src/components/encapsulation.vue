@@ -30,7 +30,7 @@
 </template>
 <script>
   import datas from '../data.js'
-  import { handleTableSpan, handleObjectSpanMethod } from '../util.js'
+  import { handleTableSpan, handleObjectSpanMethod } from '../utils/util.js'
   export default {
     mixins: [],
     components: {},
@@ -53,8 +53,9 @@
       getDataList() {
         const length = 'mm';
         const weight = 'g';
-        const arr = [];
+        // const arr = [];
         datas.forEach((element, index) => {
+          console.log(index)
 
           element.arr = [
             { msg: '长：' + element.packageLong + `${length}` },

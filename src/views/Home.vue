@@ -2,6 +2,9 @@
 <template>
   <div class="home">
     <div class="home-control">
+      <Com_Excel></Com_Excel>
+      <Com_Dragger></Com_Dragger>
+      <Com_Spreadsheet></Com_Spreadsheet>
       <Button @click="type='tree'">tree的封装</Button>
       <Button @click="type='table'">table封装</Button>
       <Button @click="type='simple'">单元格合并-简单版本</Button>
@@ -50,6 +53,9 @@ import ComTable from '@/components/Com_Table.vue'
 import ComTree from '@/components/Com_Tree.vue'
 import simple from '../components/simple'
 import encapsulation from '../components/encapsulation'
+import Com_Excel from "../components/Com_Excel";
+import Com_Dragger from "../components/Com_Dragger";
+import Com_Spreadsheet from "../components/Com_Spreadsheet";
 
 import { mapActions, mapState } from 'vuex'
 
@@ -59,7 +65,10 @@ export default {
     ComTable,
     ComTree,
     simple,
-    encapsulation
+    encapsulation,
+    Com_Excel,
+    Com_Dragger,
+    Com_Spreadsheet
   },
   data () {
     return {
